@@ -1,0 +1,37 @@
+/* only-child */
+#test1 > p:only-child{
+    background-color: steelblue;
+}
+
+/* only-of-type : p태그가 하나 밖에 없는가?*/
+#test2 > p:only-of-type{
+    background-color: brown;
+}
+
+/* :empty */
+#test3 > p:empty{
+    height: 30px;
+    background-color: lime;
+}
+
+#test3 > p:empty{
+    height: 30px;
+    background-color: lime;
+}
+
+#test5-1 .c5{
+    background-color: aquamarine;
+}
+
+/* #test5-2인 요소의 자식중 클래스가 c5인 li요소 선택*/
+#test5-2 li.c5{
+    background-color: aqua;
+}
+
+/*.c5{
+    background-color: red;
+}*/
+
+.c5.c6.c7{
+    color: red;
+}

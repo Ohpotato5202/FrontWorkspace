@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Window</title>
+    <style>
+        #clock {
+            font-size: 3em;
+            text-shadow: 3px 3px 7px #000;
+        }
+
+        #countdown {
+            border: 3px solid #000;
+            font-size: 30em;
+            padding: 10px;
+            text-align: center;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Window</h1>
+    <h2>웹페이지 구조</h2>
+    <img src="./resources/images/windowObjects.png" alt="">
+
+    <h2>웹페이지의 메모리</h2>
+    <img src="./resources/images/브라우저 메모리.png" alt="">
+    <h2>Method</h2>
+    <input type="button" value="open" onclick="test1();">
+    <input type="button" value="popup 닫기" onclick="test2();">
+    <input type="button" value="setTimeout" onclick="test3();">
+    <input type="button" value="실습문제" onclick="test4();">
+    <input type="button" value="clearTimeout" onclick="test5();">
+    <input type="button" value="setInterval" onclick="test6();">
+    <input type="button" value="실습문제" onclick="test7();">
+    <hr>
+    <div id="clock"></div>
+    <div id="countdown"></div>
+
+    <script>
+        /* 
+            window? 웹 브라우저에 의해 탭마다 하나씩 생성되는 객체로 브라우저를 제어할 수 있는 메서드를 제공.
+    
+            open() : 새창 열기 (새로운 window생성)
+            - 새탭
+            - 팝업창
+            - 현재 페이지 
+    
+            open(url, name, specs) // 뒤에 두개는 생략 가능 
+            - name : 팝업창의 이름, self(현재창에서 열림)//팝업이 계속 열리지 않고, 같은 이름 창에서만 열린다. 
+            - specs : 문자열로 팝업창의 스펙들 제시 
+    
+        */
+        var w;
+        function test1() {
+            var w = open('./08_함수.html', '_self2',
+                'width=800 height=500, top=300, left=300');
+            //똑같은 이름으로 열리게 할거면 이름 설정, 없애면 여러 창 열게 하기, self는 자기 자신을 바꿈
+            // width=800 height=500, top=300, left=300 :  팝업창의 스펙 
+            console.log(this)
+            console.log(w, w == this);
+            //w.alert("새창열기")
+
+        }
+
+        function test2() {
+            w && w.close();//open으로 연 후 새롭게 열린 팝업창 닫기 
+        }
+
+        /*  
+            setTimeout(callbackfn , millis)
+            : millis초 이후에 callbackfn을 실행
+    
+            timeoutApi의 메소드들은 비동기적으로 처리된다.
+            (비동기적으로 처리 : 작업이 완료되기를 기다리지 않는다.)
+            동기적(위에서부터 아래로 왼쪽에서 오른쪽으로 코드 순서에 맞춰서 진행된다.)
+        */
+
+        function test3() {
+            setTimeout(function () {
+                console.log('3초 뒤 안녕');
+            }, 3000)//3000 -> 3초 뒤 실행 (처리 왆료되는것을 기다리지 않는다.)
+            console.log('안녕');//먼저 실행 
+        }
+
+        function test4() {
+            var i = 1;
+
+            console.log(1, i++);//1, 1 
+            test(i);//2, 2 
+            setTimeout(function () {
+                console.log(4, i++);// 4, 2 (클로저 - 2 값 참조 )
+            }, 1000);//0초 더라도 가장 마지막에 실행된다.(스텍이 싹 비워졌을 때 마지막으로 실행된다.)
+            console.log(3, i);// 3, 2
+        }
+        function test(i) {// ql비동기 함수 아님
+            console.log(2, i--);//
+        }
+
+        /* 
+            clearTimeout : queue에 저장된 timeout함수를 제거해주는 함수
+        */
+
+        function test5() {
+            //setTimeout은 고유한 id값을 반환받음
+            var timeId = setTimeout(function () {
+                console.log("1초뒤 실행ㅋ")
+            }, 1000);
+            console.log(timeId);
+            clearTimeout(timeId);// 동기함수임(timeId와 일치하는 id를 삭제시키는 것. )
+        }
+
+        /* 
+            setInterval(callbackfn, millis)
+            millis초마다 callbackfn를 실행 (종료하기 전까지(clearTimeout)계속 실행)
+        */
+
+        function test6() {
+            //     var num = 1;
+            //     setInterval(function(){
+            //         console.log(num++);
+            //     },1000)
+            //  } -> 계속 쓰면 느려짐
+
+            var foo = function () {
+                var now = new Date();
+                var strFormat = getTimeFormatStr(now);
+                document.querySelector('#clock').innerHTML = strFormat;
+
+
+            };
+            setInterval(foo, 1000);
+        }
+        /**
+       * 00:00:00 
+       * @param {Date} param - description
+       */
+        function getTimeFormatStr(time) {
+            var f = function (n) {
+                return n >= 10 ? n : "0" + n;
+            };
+            var hh = f(time.getHours());
+            var mi = f(time.getMinutes());
+            var ss = f(time.getSeconds());
+            return hh + ":" + mi + ":" + ss;
+        }
+        /* 
+            실습문제 
+            버튼 클릭 시 카운트다운하는 함수 만들기 
+            10, 9, 8, 7, 6, 5, 4, 3, 2, 1 도달 시 카운트 다운 종료
+            clearInterval(타이머 id)
+        */
+    var intervalId;
+    function test7(){
+    intervalId && clearInterval(intervalId);//음수가는걸 막아주는 것.
+
+    var cnt = 10;
+    var cd = document.querySelector("#countdown");
+    cd.style.display='block';
+
+    var f = function(){
+        cd.innerHTML = cnt--;
+
+        if(cnt < 0){
+            clearInterval(intervalId);
+        }
+    }
+    f();
+    intervalId = setInterval(f,1000);
+    console.log(intervalId)
+  }
+
+
+    </script>
+
+    <h2>BOM</h2>
+    <h3>Browser Object Model</h3>
+    <input type="button" value="navigator" onclick="test8();">
+    <input type="button" value="location" onclick="test9();">
+    <input type="button" value="history" onclick="test10();">
+    <input type="button" value="screen" onclick="test11();">
+
+    <script>
+
+        //navigator: 현재 실행중인 브라우저와 운영체제에 대한 정보를 가진 객체 
+        //클라이언트의 브라우저 정보나 운영체제 정보를 확인하여 적합한 콘텐츠를 제공할 때 사용.
+        function test8(){
+            console.log(navigator);
+        }
+        
+        function test9(){
+            console.log(location);
+
+            location.reload();//새로고침
+            // location.href = "현재페이지"; // 리로드
+            // location.href = "https://naver.com"//현재 페이지는 네이버로 바뀜(페이지 이동)
+            location.assign('./08_함수.html'); // 뒤로가기 가능.
+            location.replace('./08_함수.html');// 뒤로가기 없음. 
+            
+        }
+
+        function test10(){
+            console.log(history);// 웹브라우저에서는 방문 기록 
+        }
+        /* 
+            screen : 모니터 관련 정보를 가진 객체
+            - width
+            - height
+            - availWidth
+            - availHeight
+        */
+        function test11(){//실제 모니터의 크기 알아낼 수 있다. 
+            console.log(screen);
+            var w = 300;
+            var h = 300;
+            var left = (screen.availWidth - w) / 2 + screen.availLeft;
+            var top = (screen.availHeight - h) /2;
+
+            open("", "popup", "width=300, height=300, left="+left+",top= "+top);
+
+ 
+        }
+    </script>
+
+    <h2>DOM</h2>
+    <img src="./resources/images/DOM.png">
+
+    <input type="button" value="createElement" onclick="test12()">
+    <input type="button" value="createImg" onclick="test13()">
+    <input type="button" value="deleteNode" onclick="deleteNode(this)">
+    <input type="button" value="실습문제" onclick="test14()">
+
+    <div class="img-wrapper"></div>
+    <div class="result"></div>
+
+    <script>
+        /* 
+            Node객체 : 모든 객체가 Node객체를 상속 받는다.
+            - html내부의 주석, 문자열 태그 모드 node;
+            - node의 메서드들 (상속받았기 때문에) 모두 사용 가능하며, EventTarget의 이벤트 속성들 사용 가능.
+            
+        */
+
+        function test12(){
+            //<h3>안녕하세요</h3>
+            //동적으로 요소를 만들기 - 이벤트에 의해 만들기?
+            // 방법1) "문자열"로 만드는 방법
+            //document.querySelector('.result').innerHTML = "<h3>안녕</h3>"
+
+            //방법2) document에서 제공하는 메소드를 통해 element객체를 만드는 방법
+            //1) elementNode 객체 생성 
+            var elementNode = document.createElement("h3")//태그명에 맞는 요소 만들어줌. //<h3></h3>
+            console.log(elementNode);
+            
+            //2)  textNode객체 생성
+           var textNode = document.createTextNode("안녕하세요");
+
+           //3) 두개의 노드를 연결
+           //   요소.appendChild(노드);
+           elementNode.appendChild(textNode);//<h3>안녕하세요</h3>
+
+           console.log(elementNode, typeof elementNode);
+           console.dir(elementNode);
+
+           document.querySelector(".result").appendChild(elementNode);//현재 DOM트리 html에 h3태그를 동적으로 넣음.
+
+        }
+        function test13(){
+            // var img = document.createElement('img');
+            // img.src = './resources/images/DOM.png';
+            // img.style = "width: 200px;";
+            // img.innerHTML = "1212";
+            // document.querySelector(".img-wrapper").appendChild(img);
+
+            // console.dir(img)
+
+            document.querySelector('.img-wrapper').innerHTML
+            += `<img src='./resources/images/DOM.png' style='width:200px'>`;
+        }
+
+        //return <h3>안녕하세요</h3>
+        function deleteNode(node){
+            node.remove();
+        }
+
+    </script>
+
+    
+</body>
+
+</html>

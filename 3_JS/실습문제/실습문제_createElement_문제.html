@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input, textarea{
+            width: 100%;
+            resize: none;
+            box-sizing: border-box;
+        }
+        dl{
+            border: 1px solid black;
+        }
+        ul , li{
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            border: 1px solid black;
+        }
+        h5{
+            text-align: center;
+            color: maroon;
+        }
+        p{
+            text-align: justify;
+            border: 1px;
+            color: blueviolet;
+        }
+    </style>
+</head>
+<body>
+    
+    <fieldset>
+        <legend>게시글 생성</legend>
+        <div>
+            <header>
+                게시글 제목 : <input type="text" name="title">
+            </header>
+            <section>
+                게시글 내용 : <textarea name="content"  cols="30" rows="10"></textarea>
+            </section>
+            <footer style="text-align: center;">
+                <input type="button" value="등록" onclick="insertBoard();">
+            </footer>
+        </div>
+    </fieldset>
+
+    <script>
+        /* 
+            등록버튼 클릭시 작성한 게시글 제목과 게시글 내용을 ul태그안에 
+            자식 안에 추가할것. 추가시 동적 node생성구문(createElement)를 활용할 것.
+
+            게시글 등록 조건
+            1) 게시글 제목과, 내용은 1글자 이상 작성해야 등록되도록 할것
+            2) 등록 완료후 작성한 내용을 비워줄것
+        */
+        var boardList = [//어디서든 사용하는 것이니까 전역으로 만들어준 것
+            {
+                title : '1번 게시글',
+                content : '글내용'
+            }
+        ];
+        function render(){
+            var ul = document.querySelector('#boardList');
+            for(var board of boardList){
+                var li = document.createElement('li');//<li></li>
+
+                var h5 = document.createElement('h5');
+                h5.innerText = board.title;
+
+                var p  = document.createElement('p');
+                p.innerText = board.content;
+
+                li.append(h5, p);
+                ul.appendChild(li);
+                //여러개 노드 추가 가능 
+            }
+        };
+
+        window.onload = function(){
+            (function(){
+                render()
+            })();
+        }
+
+        function insertBoard(){
+           var title = document.querySelector('input[name=title]');
+           var content = document.querySelector('textarea[name=content]');
+           //var boardList = document.querySelector('#boardList');
+
+           if(!title.value || !content.value){
+               return;
+           }
+           var board = {
+            title : title.value,
+            content : content.value
+           }
+
+           boardList.push(board);// 한번에 넣어서 관리위함
+           render();
+        //    var li = document.createElement('li');//<li></li>
+        //    var h5 = document.createElement('h5');
+        //    var p  = document.createElement('p');
+
+        //    h5.innerText = title.value;
+        //    p.innerText = content.value;
+        //    li.append(h5 , p);
+
+        //    boardList.appendChild(li);
+
+           title.value = "";
+           content.value="";
+        }
+        
+        /* 
+            게시글 검색기능. 게시글에 내가 입력한 내용이 포함된 게시글만 필터링 시켜서 보여주는 기능.
+            검색내용을 비워둔후 재검색 눌렀을때는 전체 게시글목록이 나와야함.
+        */
+        function searchTitle(){
+            var search = document.querySelector("input[name=search]");
+            var tLists = document.querySelectorAll('#boardList>li>h5');
+            var lists = document.querySelectorAll('#boardList>li');
+           
+            for(var i=0; i<tLists.length; i++){
+                tLists[i].innerHTML.indexOf(search.value) < 0 ? lists[i].style.display = 'none' : lists[i].style.display = 'block';
+                !search.value && (lists[i].style.display = 'block');
+            }
+        }
+    
+    </script>
+
+    <h1>게시글 목록</h1>
+    <div style="display: flex; margin: 15px;">
+        <input style="flex-basis: 90%;" type="search" name="search" placeholder="게시글제목을 입력하세요">
+        <input style="flex-basis: 10%;" type="button" value="찾기" onclick="searchTitle();">
+    </div>
+    <ul id="boardList">
+        
+    </ul>
+    
+</body>
+</html>

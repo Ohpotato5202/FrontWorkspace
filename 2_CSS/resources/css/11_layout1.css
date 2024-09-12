@@ -1,0 +1,100 @@
+.block{
+    border: 1px solid black;
+    width: 150px;
+    height: 150px;
+    color: wheat;
+    display: block;
+}
+.area1{
+    background-color: rebeccapurple;
+}
+.area2{
+    background-color: firebrick;
+}
+.area3{
+    background-color: gainsboro;
+}
+.area4{
+    background-color: magenta;
+}
+.area5{
+    background-color: khaki;
+}
+.inline{
+    display: inline;
+}
+.inline-block{
+    display: inline-block;
+}
+
+/* 화면(영역) 분할 관련
+    감싸는 영역 요소 */
+#container-1{
+    border: 3px solid black;
+    width: 323px;
+    height: 472px;
+}
+/* 내부에 영역을 분할할 요소 */
+.test1{
+    width: 100%;
+    height: 50%;
+}
+#container-1 > div:first-child{
+    background-color: cyan;
+    height: 30%;
+}
+#container-1 > div:last-child{
+    background-color: darkcyan;
+    height: 70%;
+}
+
+/* 화면(영역) 분할 관련
+    감싸는 영역 요소 */
+#container-2{
+    border: 3px solid black;
+    width: 300px;
+    height: 440px;
+}
+/* 내부에 영역을 분할할 요소 */
+#container-2 > div:nth-of-type(1){
+    background-color: cyan;
+    height: 20%;
+}
+#container-2 > div:nth-of-type(2){
+    background-color: darkcyan;
+    height: 30%;
+}
+#container-2 > div:nth-of-type(3){
+    background-color: darkblue;
+    height: 50%;
+}
+
+/* 화면(영역) 분할 관련
+    감싸는 영역 요소 */
+#container-3{
+    border: 5px solid red;
+    width: 400px;
+    height: 200px;
+}
+/* 내부에 영역을 분할할 요소 */
+.test3{
+    display: inline-block;
+    width: 50%;
+    height: 100%;
+}
+#container-3 > div:first-child{
+    background-color: pink;
+}
+#container-3 > div:last-child{
+    background-color: darkcyan;
+}
+
+.test4{
+    border: 3px solid black;
+    height: 100px;
+}
+#test-4{
+    background-color: pink;
+    visibility: hidden; /* 해당 줄 작성 시 요소가 "투명"색으로 변함 */
+    /* display: none; 해당 줄 작성 시 화면 출력란에서 아예 사라짐 */
+}

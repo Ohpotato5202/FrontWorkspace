@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>트랜지션스타일</title>
+    <link rel="stylesheet" href="resources/css/14_transition.css">
+</head>
+<body>
+    <h1>트랜지션 관련 스타일</h1>
+    <h2>변형</h2>
+    <p>
+        요소가 특정 동작에(마우스 클릭, 마우스 올라감 등) 의해 변형되는 것을 의미<br>
+        변형 ? 이동, 확대, 찌그러짐... <br>
+    </p>
+
+    <br><br><hr>
+
+    <h3>태그 이동시키기</h3>
+    <p>
+        translate 함수를 이용하여 요소를 특정 위치로 이동시키기
+    </p>
+
+    <img class="translate" src="../1_HTML/resources/image/passion2.jpg" width="200" height="200"><br>
+    <img class="translate" src="../1_HTML/resources/image/passion2.jpg" width="200" height="200"><br>
+    <img class="translate" src="../1_HTML/resources/image/passion2.jpg" width="200" height="200"><br>
+    <img class="translate" src="../1_HTML/resources/image/passion2.jpg" width="200" height="200"><br>
+    
+    <br><br><hr>
+
+    <h3>태그 확대하기</h3>
+    <p class="scale">
+        태그확대
+    </p>
+    <p class="scaleX">
+        태그확대
+    </p>
+    <img src="../1_HTML/resources/image/passion.jpg" class="scaleY">
+
+    <br><br><hr>
+
+    <h3>트랜지션 적용하기</h3>
+    <p>
+        태그가 변형 속성에 의해 "변형"이 이루어질 때 부드럽게 변형이 될 수 있게 해 주는 속성 <br>
+        transition-property : 트랜지션을 적용할 변형속성
+        transition-duration : 지속시간
+        transition-timing-function : liner, ease, ease-in, ease-out
+    </p>
+
+    <br><br><hr>
+    <input type="checkbox">
+    <div class="transitiondiv transition transit"></div>
+
+</body>
+</html>

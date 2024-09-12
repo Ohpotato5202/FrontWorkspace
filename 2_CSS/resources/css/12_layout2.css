@@ -1,0 +1,82 @@
+div{
+    border: 1px solid black;
+    box-sizing: border-box;
+}
+.test{
+    width: 300px;
+    height: 200px;
+    background-color: #eee;
+}
+
+
+.float-left{
+    width: 50px;
+    height: 50px;
+    background-color: pink;
+    float: left;    /* 요소를 화면상에 띄우고, 왼쪽으로 흐름을 주어 왼쪽 정렬
+     -오른쪽에 다른 요소 붙을 수 있음(블록 단위의 속성 사라진 것) */
+}
+.float-right{
+    width: 50px;
+    height: 50px;
+    background-color: yellow;
+    float: right;
+}
+.clear{
+    /* float : left, right를 모두 해제 */
+    clear:both;
+}
+
+
+.container{
+    width: 400px;
+    height: 200px;
+}
+.div-1{
+    width: 50%;
+    height: 100%;
+    float: left;
+}
+
+.bg-1{background-color: pink;}
+.bg-2{background-color: green;}
+.bg-3{background-color: blueviolet;}
+.bg-4{background-color: ivory;}
+.bg-5{background-color: lightblue;}
+.bg-6{background-color: lemonchiffon;}
+.bg-7{background-color: brown;}
+
+
+.div-2{
+    width: 50%;
+    height: 100%;
+    float: left;
+}
+.row1{
+    width: 100%;
+    height: 50%;
+}
+.row2{
+    width: 100%;
+    height: 50%;
+}
+
+
+.container-3{
+    width: 400px;
+    height: 400px;
+}
+.div-2{
+    width: 50%;
+    height: 100%;
+    float: left;
+}
+.row3{
+    height: 50%;
+}
+.row4{
+    height: 50%;
+}
+.row5{
+    height: 50%;
+}

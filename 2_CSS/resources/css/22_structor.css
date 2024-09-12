@@ -1,0 +1,232 @@
+* {
+            /* border:1px solid red; */
+            box-sizing: border-box;
+        }
+        .wrap{
+            width: 1000px;
+            height: 800px;
+            margin : auto;
+        }
+
+        .header{
+            height: 20%;
+        }
+
+        .nav{
+            height: 5%;
+        }
+
+        .content{
+            height: 55%;
+        }
+        .footer{
+            height: 20%;
+        }
+
+        .header , .content{
+            display:flex;
+        }
+        .header > div:nth-child(1) {
+            flex-basis : 20%;
+        }
+        .header > div:nth-child(2){
+            flex-basis : 65%;
+        }
+        .header > div:nth-child(3){
+            flex-basis : 15%;
+            flex-grow: 1;
+        }
+
+        .content > div:nth-of-type(1){
+            flex-basis:15%;
+        }
+
+        .content > div:nth-of-type(2){
+            flex-basis:60%;
+        }
+
+        .content > div:nth-of-type(3){
+            flex-basis:25%;
+            flex-grow: 1;
+        } 
+
+
+        .footer-1{
+            height: 20%;
+            padding-left: 15px;
+            font-weight: 600;
+           
+        }
+        .footer-2{
+            height: 80%
+        }
+
+        .footer-1> a {
+            color:black;
+            text-decoration: none;
+            vertical-align: middle;/*수직정렬*/
+        }
+        .footer-1 > a:not(:last-of-type)::after{ /* after: 가상요소 : a 뒤에 올 것에 요소 추가 */
+            content: ' | ';
+        }
+
+        .footer-2 > p {
+            margin: 0;
+            font-size: 12px;
+
+        }
+
+        .footer-2-1{
+            height: 80%;
+            padding: 5px 15px; /*상하 : 5, 좌우 : 15 같이 묶어서 적용 가능 */
+        }
+
+        .footer-2-2{ 
+            height: 20%;
+            text-align: center;
+        }
+
+        /* header스타일 시작*/
+        .header-1{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    
+        #search_form{
+            padding: 0 10%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+           align-items: center;
+        }
+
+        #search_form > div {
+            height: 20%;
+        }
+        #search_form > div:first-child {
+            width: 80%;
+        }
+        #search_form > div:last-child {
+            width: 20%;
+        }
+        #search_form input{
+            width: 100%;
+            height: 100%;
+        }
+        /* header 끝*/
+
+        /* 로그인 스타일 시작 */
+        #login_form{
+            height: 30%;
+        }
+        
+        #login_form_input{
+            height: 80%;
+            display: flex;
+        }
+
+        #login_form_input > div:first-child{
+            flex-basis: 65%;
+        }
+
+        #login_form_input > div:first-child > input{
+            width: 100%;
+            height: 50%;
+            box-sizing: border-box; /*input태그 자체의 패딩값 때문에 튀어 나온 것 해결 */
+        }
+
+
+        #login_form_input > div:last-child{
+            flex-basis: 35%;
+        }
+        
+        #login_form_input > div:last-child> input{
+            width: 100%;
+            height: 100%;
+        }
+
+        #login_form_etc{
+            height: 20%;
+            text-align: center;
+        }
+        #login_form_etc > a {
+            text-decoration: none;
+            color: black;
+            font-size: 12px;
+            vertical-align: middle;
+            margin: 10px;
+        }
+
+        /* 로그인 스타일 끝 */
+
+        /* 네비바 스타일 시작 */
+        .nav{
+            position: sticky; /* relative 값도 포함되어 있음. */
+            /* 상단에 붙이기, top, bottom, l, r, 와 함꼐 써야 함*/
+            top: 0;
+        }
+
+        #navi{ /* 높이 맞춰주기 */
+            height: 100%;
+         }
+    
+         ul{
+            list-style-type: none; 
+            margin: 0;
+            padding: 0;
+            display: flex; /*가로로 바뀜*/
+         }
+         
+         /* 일정한 간격으로 배치, 가운데 정렬 */
+         #navi > li{
+            flex-basis: 15%;/* 점유율 설정 */
+            text-align: center;
+            height: 100%;
+         }
+    
+         .nav a {
+            text-decoration: none;
+            color: lightcoral;
+            font-size: 13px;
+            font-weight: 900;
+    
+            /* width: 100%; 앵커태그는 순수 인라인 블럭으로 크기 지정이 안됨, */
+            display: block; /* 인라인 요소를 block형태로 바꿔줌 - 높이, 너비 지정하기 위해*/
+            width: 100%;
+            height: 100%;
+            /* vertical-align: middle; 인라인 요소에만 사용 가능 */
+            line-height: 35px; /* 줄 높이 : 자간 */
+
+            /* transform: scale(1); 맨앞으로 끌어올리는 역할..? */
+    
+         }
+    
+         #navi > li > ul{
+            /* 위에서 부여한 스타일 중복이므로 제거
+            display: flex; */
+            display: none;
+            flex-direction: column; 
+            /* position: absolute;
+            left: 50px;
+     */
+         }
+    
+         #navi > li > ul a{
+            font-size: 10px;
+         }
+    
+         #navi a:hover { 
+            font-size: 15px;
+            color: crimson;
+         }
+    
+         #navi > li > ul a:hover { /* 우선순위 적용 : 명시도가 높을수록 */
+            font-size: 13px;
+         }
+    
+         #navi > li a:hover+ul, #navi > li > ul:hover{/* + : 형제 태그 - 같은 선상에 있는 것 태그 */
+            display: flex;
+         }
+
+        /* 네비바 스타일 끝 */

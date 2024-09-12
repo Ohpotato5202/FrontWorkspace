@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>애니메이션스타일</title>
+    <style>
+        /* 
+            animation 속성
+            @keyframes 이름{
+                진행상태에 따른 스타일(0% ~ 100%)
+
+            }
+            animation-name : keyframes에 지정한 이름
+            animation-delay : 지연시간
+            animation-direction : normal | reverse | alternate(반복)...
+            animation-iteration-count : 반복횟수 | infinite
+            animation-duration : 실행시간
+            animation-timing-function : 속도곡선
+                */
+
+        .anitest:hover{
+            width: 200px;
+            animation-name: ani;
+            animation-duration: 4s;
+            animation-direction: alternate;
+            animation-iteration-count: infinite;/* 반복횟수 '무한'으로 정하는 것*/
+        }
+        .anitest2:active{
+            animation: ani2 5s infinite alternate;  /* 순서 상관 없이 작성 가능 */
+        }
+        
+        @keyframes ani{
+            /* 
+            0%{
+
+            }
+            10%{
+
+            } 처럼 추가 가능 */
+
+            from{ /*1에서 */
+                background-color: lightblue;
+                border: 1px solid black;
+            }
+            to{/*2로 변형된 것*/
+                background-color: lightcoral;
+                border: 1px solid black;
+                transform: rotate(720deg);  /* 720도(2바퀴) 도는 옵션 */
+            }
+        }
+
+        @keyframes ani2{
+            0%{
+                background-color: lightblue;
+            }
+            30%{
+                transform: translate(50px, 50px);   /* 오른쪽 아래로 이동 */
+            }
+            50%{
+                background-color: lightcoral;
+                transform: scale(1.2);/*1.2배로 조금 확대*/
+                border: 1px solid black;
+            }
+            100%{
+                transform: rotate(180deg); /* 한 바퀴 돌려주기 */
+                background-color: black;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="anitest">기본 애니메이션 적용</div>
+    <div class="anitest2">애니메이션 적용</div>
+    
+</body>
+</html>

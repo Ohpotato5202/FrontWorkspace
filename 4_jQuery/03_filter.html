@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>filter</title>
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
+</head>
+
+<body>
+    <h1>Filter</h1>
+    <input type="button" value="filter" onclick="test1()">
+    <input type="button" value="filter | last | eq | not" onclick="test2()">
+    <!-- .wrapper>p.test{얀녕$}*10 -->
+    <div class="wrapper">
+        <p class="test">안녕11</p>
+        <p class="test">안녕22</p>
+        <p class="test">안녕33</p>
+        <p class="test">안녕44</p>
+        <p class="test">안녕55</p>
+        <p class="test">안녕63</p>
+        <p class="test">안녕77</p>
+        <p>안녕8</p>
+        <p>안녕9</p>
+        <p>안녕10</p>
+    </div>
+    <script>
+        function test1() {
+            // filter(selector) 읽는 그대로 필터를 씌운다는 개념
+            // 현재 선택된 jquery객체의 요소들중에서 selector에 부합되는 요소만 추려서
+            // 다시 jquery객체로 반환
+            var $p = $('.wrapper > p');
+            console.log($p);
+            console.log($p.filter('.test'));
+
+            $p.filter(":even"); // 짝수 인덱스 요소만 반환 0 2 4 6 // 자바 even과 다름
+            // $p.filter(":odd").css('color','deeppink') // 조건부여 하여 필터링 씌우는 법임
+
+            // $p.filter(function (index, p){
+            //     // console.log(index, p, index% 2 == 0);
+            //     return index % 2 == 0; // 짝수 인덱스만 리턴하는 법
+            // }).css("color",'deeppink')
+
+            // p태그의 textContent중 숫자만 추려서 가져온 후,
+            // 짝수라면 글자색 deeppink로 바꾸기
+
+            $p.filter(function (index, p) {
+                console.log($(p).prop('innerText'), $(p).text(), p.innerText, p.textContent)
+                var text = $(p).text();
+
+                // var num = text.match(/\d/g);
+                // console.log(num[0])
+
+                var num = text.replace(/[^\d]/g, "");
+                console.log(num)
+
+                return num % 2 == 0;
+            }).css("color", 'deeppink');
+        }
+
+        function test2() {
+            var $p = $(".wrapper p");
+            console.log($p.first()); // jquery객체 반환 - 체인링 사용불가능
+            console.log($p[0].style.color); // p태그 원본 - style 사용해야함
+
+            // $p.eq(5), $p.not('.test') 
+            // 선택자만 바꾸고 추가 가능
+            // first
+            // last
+            // eq
+            // not
+            $p.last()
+              .css('font-size','2em');
+        }
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

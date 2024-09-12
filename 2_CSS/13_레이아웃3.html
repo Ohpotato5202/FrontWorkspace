@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>레이아웃3</title>
+    <style>
+        div{
+            border: 1px solid black;
+            box-sizing: border-box;
+        }
+        .container-1{
+            border: 2px dashed red;
+            position: relative;
+        }
+        .first{
+            width: 300px;
+            height: 300px;
+            background-color: yellow;
+        }
+        .second{
+            width: 200px;
+            height: 200px;
+            background-color: green;
+            position: absolute;         /* 요소의 기존배치 순서 무시 (absolute) */
+            top: 50px;                  /* container-1 의 position: relative로, 설정된 기준에 따라 top으로부터 50px 이동 */
+            left: 50px;
+        }
+        .third{
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+            position: absolute;
+            top: 100px;
+            left: 100px;
+        }
+
+        /* 정가운데 배치 */
+        .container-2{
+            width: 300px;
+            height: 300px;
+            position: relative;
+        }
+        #center{
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+            position: absolute;
+            top: 0px;
+            bottom: 0px;
+            left: 0px;
+            right: 0px;
+            margin: auto;   /* 요소간의 거리를 조절하는 margin */
+        }
+        .fixed-area{
+            width: 120px;
+            text-align: center;
+            position: fixed;    /* fixed는 화면(뷰포트) 기준으로 배치됨 */
+            right: 50px;
+            bottom: 50px;       /* 상단 코드 중 position: relative 설정 내용이 없으므로 화면 전체가 기준점이 됨 */
+        }
+        .nav{
+            height: 50px;
+            background-color: pink;
+            border-bottom: 2px solid black;
+            position: sticky;
+            top: 0px;
+        }
+    </style>
+</head>
+<body id="body">
+    <h1>배치 관련 스타일(position)</h1>
+    <pre>
+        position은 요소의 위치를 지정하는 속성
+
+        position : relative; (상대적인)
+            - 지정된 요소 내부에 자식요소의 상대적인 기준이 되게 만드는 속성
+            - 내부에 작성되는 요소에 위치 지정 시
+                top, bottom, left, right 속성을 사용할 수 있음
+
+        position : absolute; (절대적인)
+            - 기본 요소의 배치 순서를 무시하고 지정된 절대 위치에 요소를 배치하게 만드는 속성
+
+        position : fixed; (고정된)
+            - 항상 고정된 위치에 요소를 배치하게 만드는 속성
+    </pre>
+
+    <hr>
+    <h2>position 설정 테스트</h2>
+
+    <div class="container-1">
+        <div class="first">first</div>
+        <div class="second">second</div>
+        <div class="third">third</div>
+    </div>
+
+    <hr>
+
+    <h2>요소를 영역 정가운데에 배치하기</h2>
+    <div class="container-2">
+        <div id="center"></div>
+    </div>
+
+    <div class="fixed-area">
+        <a href="#body">위쪽으로 이동</a>   <!-- body에 id값 부여 후 버튼 설정 --> 
+    </div>
+
+    <hr>
+    <h2>positon: sticky</h2>
+    <h4>
+        스크롤이 최상단에 도달했을 때 화면에 스티커처럼 붙여지는 스타일 <br>
+        - 평소에는 static(기본 positon)상태에서 최상단에 도달 시 화면에 fixed 됨 <br>
+        - top, left, bottom, right 값이 필수 작성 요구 <br>
+            -> 최상단에 도달 시 어느 위치에 요소를 부착할 것인지 여부를 지정해야 하기 때문에
+    </h4>
+
+    <div class="nav">
+
+    </div>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    
+</body>
+</html>

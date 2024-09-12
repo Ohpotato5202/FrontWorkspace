@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jQuery_03_method_실습</title>
+    <!-- 최신 jquery cdn 사용하기 -->
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>    
+</head>
+<body>
+    <h2>Method1</h2>
+    <script>
+        function add() {
+            // 입력 필드의 값 가져오기
+            var title = $('input[name="title"]').val();
+            var content = $('input[name="content"]').val();
+            var owner = $('input[name="owner"]').val();
+            
+            // 공백 추가 막아주는 코드
+            if(!title || !content || !owner) return;
+
+            // 새로운 행 생성
+            var newRow = '<tr><td>' + title + '</td><td>' + content + '</td><td>' + owner + '</td></tr>';
+            
+            // 테이블에 새로운 행 추가
+            $('table').append(newRow);
+        }
+    </script>
+    
+    제목 : <input type="text" name="title" /> <br />
+    내용 : <input type="text" name="content" /><br />
+    작성자 : <input type="text" name="owner" /><br /> <br>
+    <input type="button" value="테이블에 추가" onclick="add()" /> <br><br>
+    <table border="1">
+        <tr>
+            <td> 제목 </td>
+            <td> 내용 </td>
+            <td> 작성자 </td>
+        </tr>
+    </table>
+
+    <h2>Method2</h2>
+    <script>
+        var idx = 0;
+
+        function addFile() {
+            // 인덱스 증가
+            idx++;
+            
+            // 고유한 이름을 가진 새로운 파일 입력 필드 생성
+            var newFileInput = '<div id="file' + idx + '"><input type="file" name="f' + idx + '"/> &nbsp;&nbsp;';
+            newFileInput += '<input type="button" value="삭제" onclick="delFile(' + idx + ')" /></div>';
+            
+            // 새로운 파일 입력 필드를 div에 추가
+            $('div').append(newFileInput);
+        }
+
+        function delFile(index) {
+            // 파일 입력 필드가 최소 1개 이상 남아 있는지 확인 후 삭제
+            if ($('input[type="file"]').length > 1) {
+                $('#file' + index).remove();
+            } else {
+                alert('파일 입력 필드는 최소 하나 이상이어야 합니다.');
+            }
+        }
+    </script>
+    
+    <div>
+        <input type="file" name="f0"/>  &nbsp;&nbsp;
+        <input type="button" value="추가" onclick="addFile()" />&nbsp;
+        <input type="button" value="삭제" onclick="delFile(0)" />
+    </div>
+
+</body>
+</html>

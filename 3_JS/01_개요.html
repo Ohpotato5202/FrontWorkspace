@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01_개요</title>
+</head>
+<body>
+    <!--
+        JavaScript 
+        - html의 조작과 변경을 담당하는 언어
+        - html로 웹문서의 틀을 만들고, css로 디자인을 하며, js로 실행할 동작을 정의한다. 
+        - 웹브라우저에서 실행 가능한 인터프리터 방식의 스크립트 언어.
+          * 인터프리터 : 컴파일 과정 없이 한 줄씩 실행되는 방식의 언어 
+          + 자바는 컴파일 + 인터프리터 방식의 언어 (하이브리드 방식의 언어)
+
+        장점
+        1. 코드를 작성한 후 바로 실행 결과를 볼 수 있기 때문에 간단한 개발을 하기 쉬움.
+        2. 클래스, 접근 제한자, 반환형, 변수의 자료형 등의 개념이 없는 간단한 문법이기 때문에 초보자가 다루기 쉽다.
+        3. 굉장히 많은 라이브러리와 프레임워크가 존재함. 
+        
+        단점
+        1. 컴파일 방식의 언어보다 실행 속도가 느리다. 
+        2. 큰 규모의 어플리케이션 개발에 있어서는 부적합 할 수 있다. 
+        
+    -->
+
+    <h1>자바스크립트 개요</h1>
+    <h2>1. 자바 스크립트 사용 방법</h2>
+
+    <ol>
+        <li>line : 이벤트를 부여하고자하는 요소 내에 간단한 소스코드를 작성해서 실행되게 하는 방법 
+            <input type="button" value="실행1" onclick="alert('hello js'); console.log('하이');"> 
+            <!--외부 , 내부 "" , '' 중복해서 사용하면 안됨, 다르게 사용.| 실행하고자 하는 문법이 길 경우 ;붙여야함.  -->
+            <!-- 확인 버튼 누르기 전까지 콘솔 창에 뜨지 않음. blockiong-->
+        </li>
+        <li>
+            internal : html 문서 내에 script태그를 추가하고 소스코드를 작성해서 실행되게 하는 방법 
+            <input type="button" value="실행2" onclick="abc()" >
+        </li>
+        <li onclick="window.alert('li태그 클릭')"><!-- window.alert : window는 자바 스크립트 최상위 객체라 생략 가능 -->
+            external : 소스코드들들 별도의 js파일로 작성해서 가져다가 실행되게 하는 방법 
+            <input type="button" value="실행3" onclick="test();"><!--test 함수 호출 꼭 해줘야 함. -->
+        </li>
+    </ol>
+    <script src="resources/js/01_test.js"></script>
+    <script>
+        //자바스크립트 작성 영역 (한줄 주석 가능 , 여러줄 주석, 도큐먼트 주석 가능)
+        /**/
+        /** */ 
+
+        //마지막으로 작성된 값으로 실행됨. 자바스크립트는 오버로딩 개념이 없음. 
+        //(abc가 아래에 위치해 있기 때문에 덮여 쓰여 지게 되고, 위에 있는 것은 실행 되지 않음. - > 아래에 적힌 것으로 덮혀쓰임)
+
+        /*
+            window는 자바 스크립트 내장, 객체, 브라우저 창이 열릴 때 마다 하나씩 
+            생성되는 객체, 브라우저 창 안에 존재하는 모든 요소들의 최상위 객체(자바의 Object와 비슷)
+        */
+        function abc(){
+            window.alert('버튼 클릭');
+        }
+
+    </script>
+
+    <script src="resources/js/01_test.js"></script>
+    <button type="submit" id="btn"> 콘솔창 출력 </button>
+
+    <script>
+        /* 
+            document ? 웹 문서마다 하나씩 만들어지는 객체로, 작성한 html의 태그를 파싱해서 변환된
+                      js object를 가지고 있는 객체. 현재까지의 태그 정보를 다 가지고 있고, 그 태그중 
+                      id값이 btn인 요소를 가져오라는 명령문 -> document.getElementId("btn")
+                      (순서가 중요)
+        */
+
+        //id값 기준으로 찾겠다.
+        var btn = document.getElementById("btn");
+
+        console.log(btn);//콘솔창 출력 
+
+
+        // btn.onclick = log;// 함수명만 넣기. log() x 
+        btn.onclick = function() {
+            console.log('익명함수 호출');
+        }
+
+        function log() {
+            console.log('ㅋㅋㅋ');
+        }
+
+
+
+
+    </script>
+
+    <h2>2. 자바 스크립트 자료형 </h2>
+    <input type="button" value="자료형" onclick="dataType();">
+
+    <script>
+        function dataType(){
+            //변수 선언 시 var키워드 사용. (String, int 와같은 변수 넣지 않아도 ok)
+            var i;
+
+            console.log(i, typeof(i));
+            //typeof(i) : 변수에 담겨있는 자료형을 알려줌.
+            // undefined: 값을 초기화 하지 않았을 때 나오는 기본값. (null 값과 다름. null값은 따로 있음.)
+
+
+            /*
+                값 대입이 일어날 때 변수의 타입이 결정된다 .
+                즉 변수에 대입되는 값에 따라서 자료형이 결정된다. 
+            */
+            i = 100; // number : 정수와 실수 포함해서 관리함.
+            i = 3.57; //3.57 'number'
+            console.log(i, typeof(i));
+            
+             i = "js is fun";
+             i = 'js is so fun'; // 출력 결과 : js is so fun string
+             console.log(i, typeof(i)); // string - 소문자 
+
+             i = true;
+             i = false; 
+             console.log(i, typeof(i));// boolean
+
+             //객체 (Object 기반)
+             i = [1,2,3,"dd"] //자바 List<Object>와 비슷 
+            console.log(i, typeof(i), Array.isArray(i)); // object 
+            //Array.isArray(i) : 배열인지 아닌지 확인하는 것
+
+            //HashMap<k, v> (Object 기반)
+            i = {
+                name : '홍길동', 
+                age : 30, 
+                hobby : ['축구','농구','야구']
+            };
+            console.log(i, typeof(i), Array.isArray(i));//HashMap형태라 배열이라고 인식하지 않음. 
+
+            //자바스크립트에서는 함수를 값으로 취급한다. --? 숫자. 문자열 다 가능 
+            i = function (x, y) { 
+                return x+y;
+            }
+            console.log(i, typeof(i));//함수 값 그자체로 반환 Object(x), 자료형 : function.
+            console.log(i(1,2));//3 출력 
+
+            i = new Date(); //생성자 함수 호출
+            console.log(i, typeof(i)); //object
+
+            i = null;
+            console.log(i, typeof(i));//object
+
+        }
+
+        
+
+    </script>
+
+</body>
+</html>

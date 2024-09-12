@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>네비바</title>
+    <style> 
+
+     div, ul, li, a {
+        box-sizing: border-box;
+        border: 1px solid red;
+     }
+     .nav{
+        width:1000px;
+        height: 40px;
+     }
+
+     #navi{ /* 높이 맞추기 */
+        height: 100%;
+     }
+
+     ul{
+        list-style-type: none; 
+        margin: 0;
+        padding: 0;
+        display: flex; /*가로로 바뀜*/
+     }
+     
+     /* 일정한 간격으로 배치, 가운데 정렬 */
+     #navi > li{
+        flex-basis: 15%;/* 점유율 설정 */
+        text-align: center;
+        height: 100%;
+     }
+
+     .nav a {
+        text-decoration: none;
+        color: lightcoral;
+        font-size: 13px;
+        font-weight: 900;
+
+        /* width: 100%; 앵커태그는 순수 인라인 블럭으로 크기 지정이 안됨, */
+        display: block; /* 인라인 요소를 block형태로 바꿔줌 - 높이, 너비 지정하기 위해*/
+        width: 100%;
+        height: 100%;
+        /* vertical-align: middle; 인라인 요소에만 사용 가능 */
+        line-height: 35px;
+
+     }
+
+     #navi > li > ul{
+        /* 위에서 부여한 스타일 중복이므로 제거
+        display: flex; */
+        display: none;
+        flex-direction: column; 
+
+     }
+
+     #navi > li > ul a{
+        font-size: 10px;
+     }
+
+     #navi a:hover { 
+        font-size: 15px;
+        color: crimson;
+     }
+
+     #navi > li > ul a:hover { /* 우선순위 적용 : 명시도(구체적)가 높을수록 */
+        font-size: 13px;
+     }
+
+     #navi > li a:hover+ul, #navi > li > ul:hover{/* + : 형제 태그 - 같은 선상에 있는 것 태그 */
+        display: flex;
+     }
+
+
+
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <ul id="navi">
+            <li><a href="">Java</a></li>
+            <li><a href="">Oracle</a></li>
+            <li>
+                <a href="">Front-End</a>
+                <ul>
+                    <li><a href="">HTML</a></li>
+                    <li><a href="">CSS</a></li>
+                    <li><a href="">JavaScript</a></li>
+                    <li><a href="">jQuery</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="">Server</a>
+                <ul>
+                    <li><a href="">JDBC</a></li>
+                    <li><a href="">Servlet</a></li>
+                    <li><a href="">JSP</a></li>
+                    <li><a href="">Ajax</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="">Framework</a>
+                <ul>
+                    <li><a href="">MyBatis</a></li>
+                    <li><a href="">Spring</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    
+</body>
+</html>

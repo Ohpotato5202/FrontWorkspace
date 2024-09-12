@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입 양식</title>
+</head>
+<body>
+    <form action="sign">
+    <fieldset>
+        <legend>회원가입 양식</legend>
+       <label>* 아이디 </label> <br>
+       <input type="text" name="userId" size="25" placeholder="영문, 숫자, 특수기호(_,-) 5~20" minlength="5" maxlength="50" required>
+       <input type="button" value="아이디 중복"> 
+
+       <br><br>
+
+       <label>* 비밀번호 </label> <br>
+       <input type="text" name="userPwd" size="25" placeholder="영문, 숫자, 특수문자 8~15" minlength="8" maxlength="15" required>
+       <br><br>
+
+       <label>* 비밀번호 재확인 </label> <br><!--서버에 보낼 필요 없어서 name값 생략-->
+       <input type="text" size="25" placeholder="영문, 숫자, 특수문자 8~15" minlength="8" maxlength="15" required>
+      
+       <br><br>
+
+       <label>* 이름 </label> <br>
+       <input type="text" name="userName" size="25" required>
+
+       <br><br>
+
+       <label>* 주민등록번호 </label> <br>
+       <input type="text" name="user-ssn" size="10" maxlength="6" required> -
+       <input type="password" name="user-ssn2" size="10" maxlength="7" required>
+
+       <br><br>
+
+        <label>* 성별</label> <br>
+        <input type="radio" name="gender" id="x" value="X" required>
+        <label for="x">선택안함</label>
+
+        <input type="radio" name="gender" id="m" value="M" required>
+        <label for="m">남자</label>
+
+        <input type="radio" name="gender" id="f" value="F" required>
+        <label for="f">여자</label>
+        
+        <br><br>
+
+        <label>* 생년월일</label> <br>
+        <input type="date" name="birthday" required>
+
+        <br><br>
+
+        <label> 주소</label> <br>
+        <input type="text" name="userName" size="25" >
+
+        <br><br>
+        <label> 우편번호</label> <br>
+        <input type="text" name="userName" size="20" >
+        <input type="button" value="우편번호찾기" > 
+        <input type="checkbox" id="adress" value="ADRESS">
+        <label for="adress">우편 수신 동의</label>
+
+        <br><br>
+
+        <label>&nbsp;이메일</label> <br>
+        <input type="text" name="userName" size="25" required>
+        
+        <input type="checkbox" id="email" value="EAMIL">
+        <label for="email">이메일 수신 동의</label>
+
+        <br><br>
+
+        <label>&nbsp; 휴대폰번호</label> <br>
+        <select name="phoneNum" >
+            <option value="010">010</option>
+            <option value="011">011</option>
+            <option value="031">031</option>
+            <option value="02">02</option>
+        </select> -
+        <input type="text" name="phone1" size="5" maxlength="4"  required> -
+        <input type="text" name="phone2" size="5"  maxlength="4" required>
+        <input type="checkbox" id="messege" value="MESSEGE">
+        <label for="messege">문자 수신 동의</label>
+        
+        <br><br>
+        <input type="submit" value="초기화">
+        <input type="submit" value="가입하기">
+
+
+    </fieldset>
+</form>
+
+   
+</body>
+</html>
