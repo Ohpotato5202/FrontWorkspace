@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KH Shopping Mall</title>
+    <link rel="stylesheet" href="./resources/css/styles.css">
+</head>
+
+<body>
+    <div class="header">
+        <h1>KH Shopping Mall</h1>
+        <input type="text" id="search-box" placeholder="상품을 검색하세요">
+        <button id="search-button">검색</button>
+    </div>
+    <div class="container">
+        <div class="product-section">
+            <h2>상품 목록</h2>
+            <div class="product-list" id="product-list"></div>
+        </div>
+        <div class="cart">
+            <h2>장바구니</h2>
+            <div id="cart-items"></div>
+            <div id="cart-total">Total: 0원</div>
+        </div>
+    </div>
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <img src="" alt="" id="modal-product-image">
+            <h2 id="modal-product-title"></h2>
+            <p id="modal-product-description"></p>
+            <p id="modal-product-price"></p>
+        </div>
+    </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 KH Shopping Mall. All rights reserved.</p>
+    </footer>
+    <script src="./resources/js/script.js"></script>
+</body>
+
+</html>
